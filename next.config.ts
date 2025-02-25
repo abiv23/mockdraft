@@ -1,6 +1,6 @@
-// next.config.js (if needed)
-module.exports = {
-  experimental: {
-    appDir: '/app',
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+
 };
+
+module.exports = nextConfig;

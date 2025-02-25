@@ -12,6 +12,7 @@ const FullDraft = ({ allPicks, selectedPlayers, team, currentPick, currentRound,
     }
   }, [currentDraftPick]);
 
+ 
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4 text-white">Current Draft</h2>
@@ -21,6 +22,12 @@ const FullDraft = ({ allPicks, selectedPlayers, team, currentPick, currentRound,
           const isUserPick = pick.team === team;
           const isOnTheClock = showOnTheClock && isUserPick && pick.pickNumber === currentPick;
           const isCurrentPick = pick.pickNumber === currentDraftPick; // Highlight the current pick (user or auto-draft)
+
+          // Construct the helmet logo path based on the team key (e.g., 'Cleveland Browns' -> 'cleveland-browns-helmet.png')
+          const teamKey = pick.team.split(" ").pop()
+          console.log(teamKey)
+
+          const helmetPath = `/logos/nfl/${teamKey.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}.png`
 
           return (
             <div
@@ -32,8 +39,18 @@ const FullDraft = ({ allPicks, selectedPlayers, team, currentPick, currentRound,
               {isOnTheClock && (
                 <p className="text-yellow-300 mb-1">You’re on the Clock!</p>
               )}
-              <p>Pick #{pick.pickNumber} - {selectedPlayer ? selectedPlayer.name : 'Not Drafted'} ({selectedPlayer ? selectedPlayer.position : 'N/A'})</p>
-              <p>Team: {pick.team} | Round: {pick.round}</p>
+              <p>Pick #{pick.pickNumber} - {selectedPlayer ? selectedPlayer.name : ''} {selectedPlayer ? `, ${selectedPlayer.position}` : ''}</p>
+              <div className="flex items-center gap-2">
+                <img 
+                  src={helmetPath} 
+                  alt={`${pick.team} Helmet`} 
+                  className="w-8 h-8 object-contain"
+                  onError={(e) => {
+                    e.target.src = '/logos/nfl/nflShield.png'; // Fallback image if logo fails to load
+                  }}
+                />
+                <span className="text-white">| Round: {pick.round}</span>
+              </div>
               {isUserPick && <p className="text-white">Needs: QB, RB, T, CB</p>} {/* Customize needs based on team data */}
             </div>
           );
