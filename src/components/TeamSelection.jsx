@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import nflTeams from '../data/nflTeams'; // Adjust path to your nflTeams.js file
 import teamColors from '../data/teamColors'; // Import the new file
 import RoundSelector from './RoundSelector'
+import Footer from './Footer'
 
 const TeamSelection = () => {
   const router = useRouter();
@@ -31,7 +32,7 @@ const TeamSelection = () => {
           <div className="flex flex-wrap justify-center gap-4">
             {Object.keys(nflTeams).map((fullName) => {
               const { city, teamName } = nflTeams[fullName];
-              const logoPath = `/logos/nfl/${teamName.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}.png`; // Adjust for your logo filenames
+              const logoPath = `/logos/nfl/${teamName.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}.png`;
               const backgroundColor = getTeamColor(teamName);
 
               return (
@@ -64,6 +65,7 @@ const TeamSelection = () => {
           <RoundSelector value={selectedRounds} onChange={setSelectedRounds} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

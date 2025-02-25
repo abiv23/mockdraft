@@ -6,11 +6,12 @@ import { useSearchParams } from 'next/navigation';
 import teamPicks from '../data/teamPicks';
 import nflTeams from '../data/nflTeams';
 import draftOrder from '../data/draftOrder';
-import rankedPlayers from '../data/rankedPlayers';
+import rankedPlayers from '../data/rankedPlayers'; // Corrected import path
 import DraftPool from './DraftPool';
 import FullDraft from './FullDraft';
 import YourPicks from './YourPicks';
-import TopNav from './TopNav';
+import TopNav from './TopNav'; // Import the TopNav component
+import Footer from './Footer'; // Import the Footer component
 
 const DraftBoard = () => {
   const searchParams = useSearchParams();
@@ -168,19 +169,25 @@ const DraftBoard = () => {
     allPicks.find(pick => !selectedPlayers[pick.pickNumber])?.pickNumber || null
   );
 
+  const leftRailRef = useRef(null); // Reference for the left rail container
+
   useEffect(() => {
     // Update currentDraftPick whenever selectedPlayers changes
     const nextUndraftedPick = allPicks.find(pick => !selectedPlayers[pick.pickNumber])?.pickNumber;
     setCurrentDraftPick(nextUndraftedPick);
 
-    // Scroll the current pick into view in FullDraft
-    if (currentPickRef.current && nextUndraftedPick) {
-      const element = document.querySelector(`[data-pick="${nextUndraftedPick}"]`);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Scroll the current pick or top of content based on active tab
+    if (leftRailRef.current) {
+      if (activeTab === 'Full Draft' && currentDraftPick) {
+        const element = leftRailRef.current.querySelector(`[data-pick="${currentDraftPick}"]`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else if (activeTab === 'Your Picks') {
+        leftRailRef.current.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
-  }, [selectedPlayers, allPicks]);
+  }, [selectedPlayers, allPicks, activeTab, currentDraftPick]);
 
   // Simulate current pick (for "On the Clock" functionality, only for user's team)
   const currentPick = currentUserPick; // Use the tracked current user pick
@@ -192,11 +199,14 @@ const DraftBoard = () => {
 
   return (
     <div className="p-5 bg-black min-h-screen">
-      <TopNav />
+      <TopNav /> {/* Add the TopNav component at the top */}
       <h1 className="text-3xl font-bold mb-6 text-white">Draft Board for {city} {teamName}</h1>
       <div className="flex flex-row gap-4">
         {/* Left Panel: Tabbed Draft and Picks (Scrollable Context) */}
-        <div className="w-1/3 bg-gray-900 rounded-lg shadow-md overflow-y-auto h-[calc(100vh-200px)]">
+        <div 
+          ref={leftRailRef} 
+          className="w-1/3 bg-gray-900 rounded-lg shadow-md overflow-y-auto h-[calc(100vh-350px)]"
+        >
           <div className="p-4 sticky top-0 bg-gray-900 z-10">
             {/* Tab Navigation */}
             <div className="flex mb-4">
@@ -246,6 +256,7 @@ const DraftBoard = () => {
           currentPick={currentPick} 
         />
       </div>
+      <Footer /> {/* Add the Footer component at the bottom */}
     </div>
   );
 };

@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import nflTeams from '../data/nflTeams'
 
 const YourPicks = ({ filteredTeamPickNumbers, allPicks, selectedPlayers, team }) => {
   const { teamName } = team ? nflTeams[team] || { city: '', teamName: team } : { city: '', teamName: 'No Team' };
