@@ -10,6 +10,7 @@ import rankedPlayers from '../data/rankedPlayers';
 import DraftPool from './DraftPool';
 import FullDraft from './FullDraft';
 import YourPicks from './YourPicks';
+import TopNav from './TopNav';
 
 const DraftBoard = () => {
   const searchParams = useSearchParams();
@@ -191,6 +192,7 @@ const DraftBoard = () => {
 
   return (
     <div className="p-5 bg-black min-h-screen">
+      <TopNav />
       <h1 className="text-3xl font-bold mb-6 text-white">Draft Board for {city} {teamName}</h1>
       <div className="flex flex-row gap-4">
         {/* Left Panel: Tabbed Draft and Picks (Scrollable Context) */}

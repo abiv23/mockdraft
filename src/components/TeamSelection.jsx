@@ -31,7 +31,7 @@ const TeamSelection = () => {
           <div className="flex flex-wrap justify-center gap-4">
             {Object.keys(nflTeams).map((fullName) => {
               const { city, teamName } = nflTeams[fullName];
-              const logoPath = `/logos/${teamName.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}.png`; // Adjust for your logo filenames
+              const logoPath = `/logos/nfl/${teamName.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}.png`; // Adjust for your logo filenames
               const backgroundColor = getTeamColor(teamName);
 
               return (

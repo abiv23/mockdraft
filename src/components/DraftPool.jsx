@@ -33,7 +33,6 @@ const DraftPool = ({ availablePlayers, filterPosition, setFilterPosition, handle
             key={index}
             className="p-4 bg-gray-800 rounded-lg shadow-md flex-1 min-w-[200px] max-w-[300px]"
           >
-            <p className="text-white">Pick #: {rankedPlayers.indexOf(player) + 1}</p>
             <p className="text-white">Player: {player.name}</p>
             <p className="text-white">Position: {player.position}</p>
             <p className="text-white">Rating: {player.rating}</p>
