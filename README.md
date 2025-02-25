@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Draft Simulator
 
-## Getting Started
+A Next.js-based NFL draft simulator where users can pick players for their favorite team while an auto-draft system fills in the rest. Built with React, Zustand for state management, and styled with Tailwind CSS. Currently an MVP with plans for production builds, deployment, and SSR enhancements.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Team Selection**: Pick an NFL team via URL query (e.g., `?team=Tennessee Titans`).
+- **Interactive Drafting**: Manually select players for your team’s picks from a pool of ranked players.
+- **Auto-Draft**: Automatically fills non-user picks in batches, completing the draft up to 257 picks.
+- **Results Page**: Displays your team’s picks in a card view after the draft ends.
+- **Responsive Design**: Works across devices with a dark-themed UI.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js**: Framework for React with file-based routing.
+- **React**: Frontend library for building components.
+- **Zustand**: Lightweight state management for draft data.
+- **Tailwind CSS**: Utility-first CSS for styling.
+- **JavaScript**: Core language, ES6+ features.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Prerequisites
 
-## Learn More
+- **Node.js**: v16+ (v18 recommended).
+- **npm**: v8+ (or yarn if preferred).
 
-To learn more about Next.js, take a look at the following resources:
+## Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the Repo**:
+   ```bash
+   git clone https://github.com/[your-username]/draft-simulator.git
+   cd draft-simulator
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Install Dependencies**:
+   ```bash
+   npm install
 
-## Deploy on Vercel
+2. **Run it locally**:
+   ```bash
+   npm run dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open http://localhost:3000 in your browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Usage
+
+- **Start Drafting**: Visit `http://localhost:3000?team=[Team Name]` (e.g., `?team=Tennessee Titans`).
+- **Pick Players**: Use the `DraftPool` component to select players for your team’s picks.
+- **View Results**: After the last pick, auto-draft completes the remaining slots, and you’re redirected to `/results?team=[Team Name]` to see your picks.
+
+
+## Current Status
+
+- **MVP Complete**: Core drafting functionality works in dev mode (`npm run dev`).
+- **Next Steps**:
+  - Production build (`npm run build`).
+  - Deploy to the web (e.g., Vercel).
+  - Convert components to SSR where possible.
+
+## Contributing
+
+Feel free to fork, submit PRs, or open issues! Focus areas:
+
+- Bug fixes (e.g., auto-draft edge cases).
+- UI enhancements (e.g., card animations).
+- Performance optimizations (e.g., SSR, lazy loading).
+
+## License
+
+MIT License - free to use, modify, and distribute.
