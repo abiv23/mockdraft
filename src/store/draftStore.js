@@ -1,4 +1,4 @@
-// src/store/draftStore.js
+// ./src/store/draftStore.js
 import { create } from 'zustand';
 
 export const useDraftStore = create((set) => ({

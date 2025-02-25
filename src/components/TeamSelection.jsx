@@ -1,14 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import nflTeams from '../data/nflTeams'; // Adjust path to your nflTeams.js file
-import teamColors from '../data/teamColors'; // Import the new file
+import nflTeams from '../data/nflTeams';
+import teamColors from '../data/teamColors';
 import RoundSelector from './RoundSelector'
+import { useDraftStore } from '../store/draftStore';
 import Footer from './Footer'
 
 const TeamSelection = () => {
   const router = useRouter();
+  const { resetDraft } = useDraftStore();
+
+  // Reset draft store when TeamSelection loads
+  useEffect(() => {
+    resetDraft();
+  }, [resetDraft]);
 
   const handleTeamSelect = (team) => {
     router.push(`/draft-simulator?team=${encodeURIComponent(team)}&rounds=${selectedRounds || 7}`);
