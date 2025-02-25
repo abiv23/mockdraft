@@ -1,5 +1,5 @@
 // src/data/kickers.ts
-export const initialKickers = [
+export const kickers = [
     {
       id: 1,
       name: "Andres Borregales",
