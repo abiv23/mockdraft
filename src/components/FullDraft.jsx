@@ -20,13 +20,14 @@ const FullDraft = ({ allPicks, selectedPlayers, team, currentPick, currentRound,
           const selectedPlayer = selectedPlayers[pick.pickNumber];
           const isUserPick = pick.team === team;
           const isOnTheClock = showOnTheClock && isUserPick && pick.pickNumber === currentPick;
+          const isCurrentPick = pick.pickNumber === currentDraftPick; // Highlight the current pick (user or auto-draft)
 
           return (
             <div
               key={index}
               ref={el => pickRefs.current[pick.pickNumber] = el}
               data-pick={pick.pickNumber}
-              className={`p-2 rounded-lg ${isUserPick ? 'bg-blue-600' : 'bg-gray-700'} text-white`}
+              className={`p-2 rounded-lg ${isCurrentPick ? 'bg-blue-600' : (isUserPick ? 'bg-blue-600' : 'bg-gray-700')} text-white`}
             >
               {isOnTheClock && (
                 <p className="text-yellow-300 mb-1">You’re on the Clock!</p>
