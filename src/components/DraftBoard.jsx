@@ -86,7 +86,6 @@ const DraftBoard = React.memo(() => {
     }
 
     setInitialDraft(initialSelections, firstUserPick);
-    console.log('Initial setup:', { firstUserPick, selectedPlayers: initialSelections });
   }, [team, filteredTeamPickNumbers, allPicks, setInitialDraft]);
 
   const autoDraftNonUserPicks = useCallback(
@@ -103,8 +102,6 @@ const DraftBoard = React.memo(() => {
         filteredTeamPickNumbers
           .filter((p) => parseInt(p) < currentPickNumber)
           .sort((a, b) => parseInt(b) - parseInt(a))[0] || "0";
-
-      console.log(`Auto-drafting from ${lastUserPick} to ${currentPickNumber - 1}`);
 
       for (let i = parseInt(lastUserPick) + 1; i < currentPickNumber; i++) {
         const pickNumber = i.toString();
@@ -125,7 +122,6 @@ const DraftBoard = React.memo(() => {
 
       // If no more user picks, finish the draft
       if (!filteredTeamPickNumbers.some((p) => parseInt(p) > currentPickNumber)) {
-        console.log(`Finishing draft from ${currentPickNumber + 1} to 257`);
         for (let i = currentPickNumber + 1; i <= 257; i++) {
           const pickNumber = i.toString();
           const pick = allPicks.find((p) => p.pickNumber === pickNumber);
@@ -145,7 +141,6 @@ const DraftBoard = React.memo(() => {
       }
 
       if (Object.keys(picksToDraft).length > 0) {
-        console.log(`Auto-draft picks for ${newCurrentPick}:`, picksToDraft);
         setMultiplePicks(picksToDraft);
       } else {
         console.log(`No picks to auto-draft for ${newCurrentPick}`);
@@ -182,7 +177,6 @@ const DraftBoard = React.memo(() => {
   const handleDraftPlayer = useCallback(
     (player, pickNumber) => {
       if (filteredTeamPickNumbers.includes(pickNumber)) {
-        console.log(`User drafting pick ${pickNumber}:`, player);
         setSelectedPlayer(pickNumber, player);
         const nextUserPick = filteredTeamPickNumbers.find(
           (pick) => parseInt(pick) > parseInt(pickNumber) && !selectedPlayers[pick]
@@ -223,7 +217,6 @@ const DraftBoard = React.memo(() => {
     const allPicksFilled = allPicks.every((pick) => selectedPlayers[pick.pickNumber] !== null);
     const noUserPicksRemaining = filteredTeamPickNumbers.every((pick) => selectedPlayers[pick]);
     if (noUserPicksRemaining && allPicksFilled) {
-      console.log('Draft fully complete, navigating to results');
       router.push(`/results?team=${encodeURIComponent(team)}`);
     }
   }, [selectedPlayers, filteredTeamPickNumbers, allPicks, team, router]);

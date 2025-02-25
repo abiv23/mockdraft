@@ -24,8 +24,6 @@ const FullDraft = ({ allPicks, selectedPlayers, team, currentPick, currentRound,
 
           // Construct the helmet logo path based on the team key (e.g., 'Cleveland Browns' -> 'cleveland-browns-helmet.png')
           const teamKey = pick.team.split(" ").pop()
-          console.log(teamKey)
-
           const helmetPath = `/logos/nfl/${teamKey.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}.png`
 
           return (

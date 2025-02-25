@@ -11,7 +11,6 @@ const TeamSelection = () => {
   const router = useRouter();
 
   const handleTeamSelect = (team) => {
-    console.log(`/draft-simulator?team=${encodeURIComponent(team)}&rounds=${selectedRounds || 7}`, '$*#@)*$)#@*$)@#*$)@#*$)@*#)$*@)$*@)#*$)@#*$)')
     router.push(`/draft-simulator?team=${encodeURIComponent(team)}&rounds=${selectedRounds || 7}`);
   };
 
