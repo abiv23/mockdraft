@@ -10,26 +10,14 @@ const TeamSelection = () => {
   const router = useRouter();
 
   const handleTeamSelect = (team) => {
+    console.log(`/draft-simulator?team=${encodeURIComponent(team)}&rounds=${selectedRounds || 7}`, '$*#@)*$)#@*$)@#*$)@#*$)@*#)$*@)$*@)#*$)@#*$)')
     router.push(`/draft-simulator?team=${encodeURIComponent(team)}&rounds=${selectedRounds || 7}`);
   };
 
   // Function to get team color, now using the imported teamColors object
   const getTeamColor = (teamName) => {
     return teamColors[teamName] || '#FFFFFF'; // Default to white if team not found
-  };
-
-  // Function to determine text color based on background brightness (luminance)
-  const getTextColor = (hexColor) => {
-    // Remove # if present and convert to RGB
-    const cleanHex = hexColor.replace('#', '');
-    const r = parseInt(cleanHex.substr(0, 2), 16);
-    const g = parseInt(cleanHex.substr(2, 2), 16);
-    const b = parseInt(cleanHex.substr(4, 2), 16);
-
-    // Calculate luminance (perceived brightness)
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
-    return luminance > 128 ? '#000000' : '#FFFFFF'; // Black for light backgrounds, white for dark
-  };
+  }
 
   // State for selected rounds (default to 7, matching NFL drafts)
   const [selectedRounds, setSelectedRounds] = useState(7);
@@ -45,7 +33,6 @@ const TeamSelection = () => {
               const { city, teamName } = nflTeams[fullName];
               const logoPath = `/logos/${teamName.toLowerCase().replace(/ /g, '-').replace(/'/g, '')}.png`; // Adjust for your logo filenames
               const backgroundColor = getTeamColor(teamName);
-              const textColor = getTextColor(backgroundColor);
 
               return (
                 <button
