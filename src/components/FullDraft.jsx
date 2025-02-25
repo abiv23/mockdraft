@@ -11,6 +11,7 @@ const FullDraft = ({ allPicks, selectedPlayers, team, currentPick, currentRound,
       pickRefs.current[currentDraftPick].scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, [currentDraftPick]);
+
  
   return (
     <div className="p-4">
@@ -44,6 +45,9 @@ const FullDraft = ({ allPicks, selectedPlayers, team, currentPick, currentRound,
                   src={helmetPath} 
                   alt={`${pick.team} Helmet`} 
                   className="w-8 h-8 object-contain"
+                  onError={(e) => {
+                    e.target.src = '/logos/nfl/nflShield.png'; // Fallback image if logo fails to load
+                  }}
                 />
                 <span className="text-white">| Round: {pick.round}</span>
               </div>
