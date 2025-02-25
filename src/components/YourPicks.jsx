@@ -1,4 +1,3 @@
-// src/components/YourPicks.jsx
 'use client';
 
 import React from 'react';

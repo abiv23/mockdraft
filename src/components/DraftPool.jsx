@@ -1,4 +1,3 @@
-// src/components/DraftPool.jsx
 'use client';
 
 import React from 'react';

@@ -1,4 +1,3 @@
-// src/components/TopNav.jsx
 'use client';
 
 import React from 'react';
