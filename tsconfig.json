@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.jsx", "app/layout.jsx", "src/components/DraftBoard.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.jsx", "app/layout.jsx", "src/components/DraftBoard.jsx", "src/components/Footer.spec.jsx"],
   "exclude": ["node_modules"]
 }
