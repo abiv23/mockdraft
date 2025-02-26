@@ -4,7 +4,7 @@ A Next.js-based NFL draft simulator where users can pick players for their favor
 
 ## Features
 
-- **Team Selection**: Pick an NFL team via URL query (e.g., `?team=Tennessee Titans`).
+- **Team Selection**: Pick an NFL team.
 - **Interactive Drafting**: Manually select players for your team’s picks from a pool of ranked players.
 - **Auto-Draft**: Automatically fills non-user picks in batches, completing the draft up to 257 picks.
 - **Results Page**: Displays your team’s picks in a card view after the draft ends.
@@ -43,7 +43,7 @@ Open http://localhost:3000 in your browser.
 
 ## Usage
 
-- **Start Drafting**: Visit `http://localhost:3000?team=[Team Name]` (e.g., `?team=Tennessee Titans`).
+- **Start Drafting**: Visit `http://localhost:3000/`.
 - **Pick Players**: Use the `DraftPool` component to select players for your team’s picks.
 - **View Results**: After the last pick, auto-draft completes the remaining slots, and you’re redirected to `/results?team=[Team Name]` to see your picks.
 
