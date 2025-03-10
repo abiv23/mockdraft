@@ -33,6 +33,7 @@ const DraftBoard = React.memo(() => {
     resetDraft();
   }, [team, resetDraft]);
 
+  // might be able to remove all this logic and just hardcode the 257 total picks, look fur subsequent use
   const allPicks = useMemo(() => {
     const picks = [];
     for (let i = 1; i <= rounds; i++) {
